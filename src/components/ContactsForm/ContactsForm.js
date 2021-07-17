@@ -28,8 +28,8 @@ export default class Adduser extends Component {
         this.props.addUser(this.state)
         this.setState({
             name:'',
-            number:'',
-            location:''
+            email:'',
+            gen:''
 
         })
        
@@ -38,7 +38,7 @@ export default class Adduser extends Component {
 
 
 
-    render(props) {
+    render() {
 
         return (
             <div>
@@ -51,13 +51,13 @@ export default class Adduser extends Component {
                     </label>
                     <br />
                     <label htmlFor="number">
-                        <h3>Number</h3>
-                    <input type="number" name="number" placeholder='number' value={this.state.number} onChange={this.handleChange}/>
+                        <h3>Email</h3>
+                    <input type="email" name="email" placeholder='email' value={this.state.email} onChange={this.handleChange}/>
                     </label>
                     <br />
-                    <label htmlFor="Location">
-                        <h3>Location</h3>
-                    <input type="text" name="location" placeholder='location' value={this.state.location} onChange={this.handleChange}/>
+                    <label htmlFor="Gen">
+                        <h3>Gen</h3>
+                    <input type="number" name="gen" placeholder='gen' value={this.state.gen} onChange={this.handleChange}/>
                     </label>
                     <br />
                     <center>

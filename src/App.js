@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Userui from './components/userui/userui';
+import UserList from './components/userlist/userlist';
 import Adduser from './components/ContactsForm/ContactsForm';
 
 export default class App extends Component {
   constructor(props){
     super(props);
     this.state= {
-     contacts:[
+     users:[
       //  {
       //    name:'mark',
       //    email:'g@gmail.com',
@@ -28,10 +29,29 @@ export default class App extends Component {
 
 
 
+  handleDeleteUser =(userId)=> {
+    const savedusers = this.state.users.filter(
+          (user)=>{
+             return user.id !==userId;
+          })
+          this.setState({users: savedusers})
+  }
+
+  handleEditUser = (updatedUser) => {
+    this.setState({
+      users: this.state.users.map((user) =>
+        user.id === updatedUser.id ? updatedUser : user
+      ),
+    });
+  };
+
+
+
   handleAddContact = (newUser) => {
+    newUser.id = Math.random().toString();
     this.setState({
       //this code copies what ever is in the state
-      contacts: [...this.state.contacts, newUser]
+      users: [...this.state.users, newUser]
     })
 }
 
@@ -42,14 +62,13 @@ export default class App extends Component {
       <div>
          <Adduser addUser ={this.handleAddContact}/>
         <br/>
-        
-        {this.state.contacts.map((contact,index) =>{
-          return(
-            <>
-          <Userui name={contact.name} number={contact.number} location={contact.location}/>
-            </>
-          )
-        })}
+        <center>
+        <UserList
+          users={this.state.users}
+          deleteUser = {this.handleDeleteUser}
+          editUser = {this.handleEditUser}
+          />
+          </center>
                
       </div>
     )
