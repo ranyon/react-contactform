@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { addUser } from '../../actions/action'
 
-export default class Adduser extends Component {
+ class Adduser extends Component {
     constructor(props){
         super(props)
 
@@ -25,7 +27,7 @@ export default class Adduser extends Component {
     handleSubmit = (event) =>{
         event.preventDefault()
         console.log(this.state)
-        this.props.addUser(this.state)
+        this.props.addNewUser(this.state)
         this.setState({
             name:'',
             email:'',
@@ -69,3 +71,10 @@ export default class Adduser extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    addNewUser: addUser
+}
+
+
+export default connect(null, mapDispatchToProps) (Adduser);
