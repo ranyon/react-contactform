@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import  {useState} from 'react';
+import  {useState} from 'react'
+import {DeleteUser} from '../../actions/action'
+import {connect} from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import EditForm from '../editform/editform';
 import Modal from "react-bootstrap/Modal";
 
 
-const Userui = ({user,deleteUser, editUser}) => {
+const Userui = ({user,DeleteUser, editUser}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const handleDelete = (event)=> {
-            deleteUser(user.id)
+            DeleteUser(user.id)
     }
 
 
@@ -48,4 +50,8 @@ const Userui = ({user,deleteUser, editUser}) => {
     );
 }
 
-export default Userui;
+const mapDispatchToProps = {
+  DeleteUser : DeleteUser
+}
+
+export default connect(null,mapDispatchToProps)(Userui);
