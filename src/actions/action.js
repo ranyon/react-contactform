@@ -5,9 +5,17 @@ export const DELETE_USER = 'DELETE_USER'
 export const addUser = (user) => {
     console.log("addUser", user);
     user.id = Math.random().toString();
-    return {
-        type: ADD_USER,
-        payload: user
+    // return {
+    //     type: ADD_USER,
+    //     payload: user
+    // }
+
+    return(dispatch,state,{getFirestore})=>{
+        getFirestore().collection('user').add(user).then(
+            (docs)=>{
+                console.log(docs)
+            }
+        )
     }
 }
 
